@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="tab_text_arr">
+        <item>好邻居</item>
+        <item>出让</item>
+        <item>求借</item>
+        <item>我</item>
+    </string-array>
+</resources>

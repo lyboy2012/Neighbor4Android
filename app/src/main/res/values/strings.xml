@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Neighbor</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_home_fragment">Hello home fragment</string>
+    <string name="hello_loan_fragment">Hello loan fragment</string>
+    <string name="hello_borrow_fragment">Hello borrow fragment</string>
+    <string name="hello_user_fragment">Hello user fragment</string>
+</resources>

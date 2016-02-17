@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--首页-->
+    <!-- tab fragment 相关-->
+    <item name="realTabContent" type="id" />
+    <item name="tabImageView" type="id" />
+    <item name="tabTextView" type="id"/>
+
+</resources>
