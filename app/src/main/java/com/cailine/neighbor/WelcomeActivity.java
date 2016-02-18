@@ -6,6 +6,7 @@ import android.util.Log;
 import android.widget.TextView;
 
 import com.cailine.neighbor.model.TokenInfo;
+import com.cailine.neighbor.model.User;
 import com.cailine.neighbor.service.NeighborService;
 import com.cailine.neighbor.service.ServiceGenerator;
 
@@ -33,7 +34,15 @@ public class WelcomeActivity extends BaseActivity {
     @Override
     public void init() {
         welcomeTextView = (TextView) findViewById(R.id.welcomeTextView);
+        getUser();
 
+
+
+
+
+
+    }
+    private void login(){
         NeighborService service = ServiceGenerator.createService(NeighborService.class);
         Call<TokenInfo> call = service.login("admin", "1");
 
@@ -65,13 +74,31 @@ public class WelcomeActivity extends BaseActivity {
 
         });
 
-
-
-
-
-
     }
+    private void getUser(){
+        String baseToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI1NjlkZWUwYTJjZWMxZTI0MTEwMTVjMDEiLCJleHAiOjE0NTYzOTEwNjIzMTJ9.RZGxXNUlipI5vWeNvSG3oPjyV40PANlnDqVneF5-Muw";
+        NeighborService service = ServiceGenerator.createService(NeighborService.class,baseToken);
+        Call<User> call = service.getUser("569dee0a2cec1e2411015c01");
 
+
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                Log.d(TAG,response.body().getUsername());
+                welcomeTextView.setText(response.body().getUsername());
+
+
+
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Log.d(TAG,t.toString());
+            }
+
+
+        });
+    }
 
     @Override
     protected void onDestroy() {
