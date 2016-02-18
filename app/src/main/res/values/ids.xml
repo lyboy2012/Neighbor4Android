@@ -6,4 +6,6 @@
     <item name="tabImageView" type="id" />
     <item name="tabTextView" type="id"/>
 
+    <item name="welcomeTextView" type="id"/>
+
 </resources>
