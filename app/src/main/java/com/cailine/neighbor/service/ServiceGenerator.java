@@ -8,6 +8,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -16,7 +17,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ServiceGenerator {
     public static final String API_BASE_URL = "http://192.168.100.192:3003/api/";
     private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder().connectTimeout(120, TimeUnit.SECONDS);
-    private static Retrofit.Builder builder = new Retrofit.Builder().baseUrl(API_BASE_URL).addConverterFactory(GsonConverterFactory.create());
+    private static Retrofit.Builder builder = new Retrofit.Builder().baseUrl(API_BASE_URL).addConverterFactory(GsonConverterFactory.create()).addCallAdapterFactory(RxJavaCallAdapterFactory.create());
 
     /**
     * 如果不需要token验证通过此方法创建service
@@ -39,6 +40,7 @@ public class ServiceGenerator {
     public static <S> S createService(Class<S> serviceClass, final String baseToken) {
         if (baseToken != null) {
             httpClient.addInterceptor(new Interceptor() {
+
                 @Override
                 public Response intercept(Interceptor.Chain chain) throws IOException {
                     Request original = chain.request();
@@ -48,6 +50,7 @@ public class ServiceGenerator {
                     Request request = requestBuilder.build();
                     return chain.proceed(request);
                 }
+
             });
         }
         OkHttpClient client = httpClient.build();
