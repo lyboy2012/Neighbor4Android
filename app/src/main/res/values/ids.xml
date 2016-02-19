@@ -7,5 +7,6 @@
     <item name="tabTextView" type="id"/>
 
     <item name="welcomeTextView" type="id"/>
+    <item name="welcomeButton" type="id"/>
 
 </resources>

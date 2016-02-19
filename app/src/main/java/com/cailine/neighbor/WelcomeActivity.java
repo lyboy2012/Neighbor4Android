@@ -3,6 +3,7 @@ package com.cailine.neighbor;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -11,6 +12,7 @@ import com.cailine.neighbor.model.User;
 import com.cailine.neighbor.service.NeighborService;
 import com.cailine.neighbor.service.ServiceCallback;
 import com.cailine.neighbor.service.ServiceGenerator;
+import com.jakewharton.rxbinding.view.RxView;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -21,12 +23,14 @@ import retrofit2.Response;
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 public class WelcomeActivity extends BaseActivity {
 
     private Timer timer;
     private TextView welcomeTextView;
+    private Button welcomeButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,10 +45,27 @@ public class WelcomeActivity extends BaseActivity {
     @Override
     public void init() {
         welcomeTextView = (TextView) findViewById(R.id.welcomeTextView);
+        welcomeButton = (Button) findViewById(R.id.welcomeButton);
+
+
+
        // getUser();
         getUserRx();
 
 
+    }
+    private void initBtn(){
+        /*RxView.clickable(welcomeButton).
+        RxView.clicks(welcomeButton) // 以 Observable 形式来反馈点击事件
+                .subscribe(new Action1() {
+                    @Override
+                    public void call(ClickEvent event) {
+                        Toast.makeText(getApplicationContext(),
+                                "Completed",
+                                Toast.LENGTH_SHORT)
+                                .show();
+                    }
+                });*/
     }
 
     private void login() {
